@@ -25,5 +25,6 @@ btn.addEventListener('click',()=>{
      let userText=input.value;
      output.innerText=userText;
      translate(userText);
+     input.value='';
     });
 
