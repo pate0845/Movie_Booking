@@ -7,20 +7,23 @@ const url='https://api.funtranslations.com/translate/minion.json';
 
 
 
-const translatedUrl=function(text){
-    return `${url}Text?=${text}`;
-}
-
 const translate=async function(text){
     const data=await fetch(translatedUrl(text));   
     const result=await data.json();
-     console.log(result);
+    try{
+     output.innerText=result.contents.translated;
+    }catch (TypeError){
+        output.innerText=result.error.message;
+    }
+}
+
+const translatedUrl=function(text){
+    return url +'?text='+text;
 }
 
 btn.addEventListener('click',()=>{
      let userText=input.value;
      output.innerText=userText;
-     input.value='';
      translate(userText);
     });
 
